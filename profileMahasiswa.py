@@ -7,7 +7,7 @@ class Mahasiswa:
     self.idCard = idCard
     self.major = major
     
-  def getProfileMahasiswa(self, parent):
+  def getProfileMahasiswa(self, parent, checker):
     top = Toplevel(parent)
     top.title("Profile Mahasiswa BSI")
         
@@ -18,6 +18,8 @@ class Mahasiswa:
     profile_info = f"Nama : {self.name}\nNilai : {self.nilai}\nNIM : {self.idCard}\nJurusan : {self.major}"
     profile_label = Label(top, text=profile_info, font=('Arial', 18), anchor='w', justify="left")
     profile_label.pack()
+        
+    Button(top, text="Check Kelulusan", command=lambda: checker.checkGPA(self)).pack()
     
   def dataMahasiswa():
     return []

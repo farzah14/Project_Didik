@@ -1,7 +1,7 @@
 import tkinter
 from tkinter import messagebox
 from profileMahasiswa import Mahasiswa
-
+from checkingStudentGPA import CheckStudentGPA
 class InputMahasiswa:
   def __init__(self, root):
     self.listMahasiswa = Mahasiswa.dataMahasiswa()
@@ -91,11 +91,8 @@ class InputMahasiswa:
     self.majorEntry.delete(0, tkinter.END)
 
   def seeData(self):
-    for widget in self.dataFrame.winfo_children():
-      widget.destroy()
-    
     for numberMahasiswa, mahasiswa in enumerate(self.listMahasiswa):
-      tkinter.Button(self.dataFrame, text=f"Data Mahasiswa {numberMahasiswa+1}", command=lambda m=mahasiswa: m.getProfileMahasiswa(self.root)).pack()
+      tkinter.Button(self.dataFrame, text=f"Data Mahasiswa {numberMahasiswa+1}",command=lambda m=mahasiswa: m.getProfileMahasiswa(self.root, CheckStudentGPA())).pack()
       
   @staticmethod
   def main():
