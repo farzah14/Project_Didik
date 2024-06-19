@@ -47,7 +47,11 @@ class InputMahasiswa:
     # Membuat frame untuk melihat data
     self.dataFrame = tkinter.Frame(self.root)
     self.dataFrame.grid(row=5, column=0, columnspan=2, pady=10)
-
+    
+    # Membuat button untuk menghapus buttonDataMahasiswa
+    self.clearButton = tkinter.Button(self.root, text="Clear Data", command=self.clearButtonDataMahasiswa)
+    self.clearButton.grid(row=8, column=0, columnspan=4, pady=10)
+    
     # Menjalankan aplikasi
     self.root.mainloop()
   
@@ -83,8 +87,10 @@ class InputMahasiswa:
       return None
 
   def addData(self):
-    getDataMahasiswa = self.mahasiswaInput()
-    self.listMahasiswa.append(Mahasiswa(*getDataMahasiswa))
+    self.listMahasiswa.append(Mahasiswa(*self.mahasiswaInput()))
+    self.clearPlaceholder()
+    
+  def clearPlaceholder(self):
     self.nameEntry.delete(0, tkinter.END)
     self.nilaiEntry.delete(0, tkinter.END)
     self.idEntry.delete(0, tkinter.END)
@@ -92,7 +98,12 @@ class InputMahasiswa:
 
   def seeData(self):
     for numberMahasiswa, mahasiswa in enumerate(self.listMahasiswa):
-      tkinter.Button(self.dataFrame, text=f"Data Mahasiswa {numberMahasiswa+1}",command=lambda m=mahasiswa: m.getProfileMahasiswa(self.root, CheckStudentGPA())).pack()
+      self.dataButton = tkinter.Button(self.dataFrame, text=f"Data Mahasiswa {numberMahasiswa+1}",command=lambda : mahasiswa.getProfileMahasiswa(self.root, CheckStudentGPA())).pack()
+      
+  def clearButtonDataMahasiswa(self):
+    for widget in self.dataFrame.winfo_children():
+        widget.destroy()
+    self.listMahasiswa.clear()
       
   @staticmethod
   def main():
