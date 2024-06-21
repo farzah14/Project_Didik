@@ -13,7 +13,7 @@ class CheckStudentGPA:
       labelGPA = Label(top, text="Tolong Masukkan GPA yang valid")
     elif GPA >= 3.5 and GPA <= 4.0:
       labelGPA = Label(top, text="Summa Cum Laude")
-    elif GPA >= 30 and GPA <= 35:
+    elif GPA >= 3.0 and GPA <= 3.5:
       labelGPA = Label(top, text="Magna Cum Laude")
     else:
       labelGPA = Label(top, text="Cum Laude")

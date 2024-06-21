@@ -1,5 +1,4 @@
 from tkinter import *
-
 class Mahasiswa:
   def __init__(self, name, nilai, idCard, major):
     self.name = name
@@ -20,6 +19,7 @@ class Mahasiswa:
     profile_label.pack()
         
     Button(top, text="Check Kelulusan", command=lambda: check.checkGPA(self.nilai)).pack()
+
     
   def dataMahasiswa():
     return []
