@@ -1,24 +1,17 @@
-from tkinter import *
+import tkinter
+from checkingStudentGPA import CheckStudentGPA 
 class Mahasiswa:
-  def __init__(self, name, nilai, idCard, major):
+  def __init__(self, name, ipk, nim, jurusan):
     self.name = name
-    self.nilai = nilai
-    self.idCard = idCard
-    self.major = major
+    self.ipk = ipk
+    self.nim = nim
+    self.jurusan = jurusan
     
-  def getProfileMahasiswa(self, parent, check):
-    top = Toplevel(parent)
-    top.title("Profile Mahasiswa BSI")
+  def getProfileMahasiswa(self, root, index):
+    result = f"Data ke-{index+1} = Name : {self.name}, NIM : {self.nim}, IPK : {self.ipk}, Major : {self.jurusan}, Title : {CheckStudentGPA(self.ipk).getTitle()}"
         
-    header = "Profile Mahasiswa".center(30)
-    header_frame = Label(top, text=header, font=('Arial', 20, 'bold'))
-    header_frame.pack()
-        
-    profile_info = f"Nama : {self.name}\nIPK : {self.nilai}\nNIM : {self.idCard}\nJurusan : {self.major}"
-    profile_label = Label(top, text=profile_info, font=('Arial', 18), anchor='w', justify="left")
-    profile_label.pack()
-        
-    Button(top, text="Check Kelulusan", command=lambda: check.checkGPA()).pack()
+    textDataMahasiswa = tkinter.Label(root, text=result, font=("Roboto", 12), bg="#31363F", fg="#E7F0DC")
+    textDataMahasiswa.grid(row=index, column=0, padx=20, pady=10, sticky="w")
     
   def dataMahasiswa():
     return []
